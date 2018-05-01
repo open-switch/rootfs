@@ -1,6 +1,6 @@
 # OpenSwitch Root Filesystem
 
-[![Build status](https://badge.buildkite.com/a7841f889246f2e58f49aba7c30c11a707b28b39f88de9921a.svg)](https://buildkite.com/opx/rootfs)
+[![Build status](https://badge.buildkite.com/bb0768e5e6e177eb85a2e9f3f967d07fba1238bb0118c8f253.svg)](https://buildkite.com/opx/rootfs)
 
 To build the root filesystem, run `build_opx_rootfs.sh`.
 
