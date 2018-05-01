@@ -1,10 +1,10 @@
 steps:
   - label: ":debian: Jessie"
-    command: docker run --rm --privileged -v $(pwd):/mnt --entrypoint /mnt/build.sh opxhub/build:$DIST $DIST amd64
-    env:
-      DIST: "jessie"
+    command: docker run --rm --privileged -v $(pwd):/mnt --entrypoint /mnt/build.sh opxhub/build:jessie jessie amd64
 
   - label: ":debian: Stretch"
-    command: docker run --rm --privileged -v $(pwd):/mnt --entrypoint /mnt/build.sh opxhub/build:$DIST $DIST amd64
-    env:
-      DIST: "stretch"
+    command: ./build.sh stretch amd64
+    plugins:
+      docker#v1.1.1:
+        image: "opxhub/build:stretch"
+        workdir: /mnt
