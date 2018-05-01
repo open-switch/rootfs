@@ -1,9 +1,9 @@
 steps:
-  - label: :debian: Jessie
+  - label: ":debian: Jessie"
     command: docker run --rm --privileged -v $(pwd):/mnt --entrypoint /mnt/build.sh opxhub/build:$DIST $DIST amd64
     env:
       DIST: jessie
-  - label: :debian: Stretch
+  - label: ":debian: Stretch"
     command: docker run --rm --privileged -v $(pwd):/mnt --entrypoint /mnt/build.sh opxhub/build:$DIST $DIST amd64
     env:
       DIST: stretch
