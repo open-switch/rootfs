@@ -24,7 +24,7 @@ FROM scratch
 ADD opx-rootfs_*-${DIST}_*.tar.gz /
 CMD ["bash"]
 EOF
-docker run opxhub/rootfs:$DIST uname -a
+docker run opxhub/rootfs:$DIST cat /etc/os-release
 ```
 
 © 2018 Dell Inc. or its subsidiaries. All Rights Reserved.
