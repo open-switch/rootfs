@@ -1,7 +1,0 @@
-<package_desc>
-  <!-- Repository for standard Debian packages -->
-
-  <url>http://httpredir.debian.org/debian</url>
-  <distribution>jessie</distribution>
-  <component>main</component>
-</package_desc>

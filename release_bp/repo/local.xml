@@ -1,7 +1,0 @@
-<package_desc>
-  <!-- Repository for open-source OPX packages -->
-
-  <url>copy:/mnt</url>
-  <distribution>unstable</distribution>
-  <component>main</component>
-</package_desc>

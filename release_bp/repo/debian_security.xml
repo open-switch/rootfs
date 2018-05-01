@@ -1,7 +1,0 @@
-<package_desc>
-  <!-- Repository for Debian security packages -->
-
-  <url>http://httpredir.debian.org/debian</url>
-  <distribution>jessie-updates</distribution>
-  <component>main</component>
-</package_desc>
