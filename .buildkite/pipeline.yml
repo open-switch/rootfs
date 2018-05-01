@@ -1,12 +1,12 @@
 steps:
   - label: ":debian: Jessie"
-    command: build.sh jessie amd64
+    command: /mnt/build.sh jessie amd64
     plugins:
       docker-compose#v2.1.0:
         run: jessie
 
   - label: ":debian: Stretch"
-    command: build.sh stretch amd64
+    command: /mnt/build.sh stretch amd64
     plugins:
       docker-compose#v2.1.0:
         run: stretch
