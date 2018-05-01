@@ -1,0 +1,14 @@
+version: '2'
+services:
+  jessie:
+    image: "opxhub/build:jessie"
+    privileged: true
+    volumes:
+      - ".:/mnt"
+    command: [/mnt/build.sh, jessie, amd64]
+  stretch:
+    image: "opxhub/build:stretch"
+    privileged: true
+    volumes:
+      - ".:/mnt"
+    command: [/mnt/build.sh, stretch, amd64]

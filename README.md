@@ -11,11 +11,7 @@ To build the root filesystem, run `build_opx_rootfs.sh`.
 If `debootstrap` is not available, you can use a container.
 
 ```bash
-DIST=stretch
-docker run --rm -it --privileged -v $(pwd):/mnt \
-  -e LOCAL_UID=$(id -u) -e LOCAL_GID=$(id -g) \
-  --entrypoint /mnt/build.sh \
-  opxhub/build:$DIST $DIST amd64
+docker-compose run stretch
 ```
 
 A docker image can be created from this root filesystem.
