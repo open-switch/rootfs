@@ -17,12 +17,12 @@ docker-compose run stretch
 A docker image can be created from this root filesystem.
 
 ```bash
-cat <<EOF | docker build -t opxhub/rootfs:$DIST -f- .
+cat <<EOF | docker build -t opxhub/rootfs:stretch -f- .
 FROM scratch
 ADD opx-rootfs_*-${DIST}_*.tar.gz /
 CMD ["bash"]
 EOF
-docker run opxhub/rootfs:$DIST cat /etc/os-release
+docker run opxhub/rootfs:stretch cat /etc/os-release
 ```
 
 © 2018 Dell Inc. or its subsidiaries. All Rights Reserved.
