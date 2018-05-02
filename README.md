@@ -26,4 +26,3 @@ docker run opxhub/rootfs:$DIST cat /etc/os-release
 ```
 
 © 2018 Dell Inc. or its subsidiaries. All Rights Reserved.
-
