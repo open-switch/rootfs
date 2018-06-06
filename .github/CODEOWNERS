@@ -1,7 +1,8 @@
 * @open-switch/operations
 
-*.yang   @open-switch/yang
-*.yhist  @open-switch/yang
-debian/  @open-switch/operations
-*.md     @open-switch/documentation
-.github/ @open-switch/administration
+*.md       @open-switch/documentation
+*.yang     @open-switch/yang
+*.yhist    @open-switch/yang
+.buildkite @open-switch/operations
+.github/   @open-switch/administration
+debian/    @open-switch/operations
