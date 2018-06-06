@@ -7,7 +7,7 @@ services:
       - ".:/mnt"
     command: [/mnt/build.sh, jessie, amd64]
   stretch:
-    image: "opxhub/build:stretch"
+    image: "opxhub/build"
     privileged: true
     volumes:
       - ".:/mnt"
