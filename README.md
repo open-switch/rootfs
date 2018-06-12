@@ -1,4 +1,4 @@
-# rootfs ![badge](https://concourse.openswitch.net/api/v1/teams/main/pipelines/rootfs/jobs/release-jessie/badge)
+# rootfs [![Build status](https://badge.buildkite.com/8e5efe5aceb8cce2c1a6493884c4e717f816b89be91132d47d.svg)](https://buildkite.com/opx/rootfs)
 
 *OpenSwitch Debian root filesystem*
 
