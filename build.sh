@@ -30,6 +30,7 @@ echo $default_hostname >"$tmpdir/etc/hostname"
 echo "127.0.1.1	$default_hostname" >>"$tmpdir/etc/hosts"
 
 # Copy the contents of the rootconf folder to the rootfs
+apt-get install -y --no-install-recommends rsync
 rsync -avz --chown root:root rootconf/* "$tmpdir"
 
 # Update package cache
