@@ -4,7 +4,7 @@ steps:
       DIST: jessie
     command: |
       VERSION="$(cat VERSION)"
-      docker-compose run $DIST
+      docker-compose run "$DIST"
       TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
       sha256sum "$TARBALL" >"${TARBALL}.sha256"
       buildkite-agent artifact upload "${TARBALL}*"
@@ -12,10 +12,6 @@ steps:
     env:
       DIST: stretch
     command: |
-      if [[ -z "$BUILDKITE_TAG" ]]; then
-        echo Not a tag, skipping...
-        exit
-      fi
       VERSION="$(cat VERSION)"
       docker-compose run "$DIST"
       TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
