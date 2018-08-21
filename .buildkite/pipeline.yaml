@@ -20,7 +20,7 @@ steps:
   - wait: ~
     continue_on_failure: true
   - label: ":docker: publish"
-    branches: "master"
+    branches: "v*"
     agents: {queue: deploy}
     concurrency: 1
     concurrency_group: "docker/import-push"
@@ -49,7 +49,7 @@ steps:
         docker push "opxhub/rootfs:$DIST"
       }
   - label: ":s3: publish"
-    branches: "master"
+    branches: "v*"
     agents: {queue: deploy}
     concurrency: 1
     concurrency_group: "archive.openswitch.net"
