@@ -1,0 +1,27 @@
+#!/bin/sh
+
+ZTD_FILE="/etc/opx/ztd/ztd"
+ZTD_PROV_SCRIPT="/etc/opx/ztd/ztd_prov_script"
+
+#check if it a new assignment, ztd enabled and ztd option recieved
+if [ "$reason" = "BOUND" ] && [ -f $ZTD_FILE ] && [ -n "$new_ztd_provision_url" ]; then
+   echo "ZTD is enabled, request recieved on interface: $interface"
+   echo "ZTD Provision URL:  $new_ztd_provision_url"
+
+   #download the provisioning url
+   curl -o $ZTD_PROV_SCRIPT "$new_ztd_provision_url"
+
+   if [ $? -eq 0 ]; then
+         #execute the provisioning url
+      chmod +x $ZTD_PROV_SCRIPT
+      if $ZTD_PROV_SCRIPT; then
+         echo "ZTD provision script executed successfully"
+      else
+         echo "ZTD provision script failed to execute"
+      fi
+   else
+      echo "Error: Download of ZTD provision url failed !!"
+   fi
+else
+   echo "ZTD Post Script not executed: $reason - $interface - $new_ztd_provision_url"
+fi
