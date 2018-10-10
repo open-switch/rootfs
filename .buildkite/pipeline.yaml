@@ -4,7 +4,7 @@ steps:
       DIST: jessie
     command: |
       VERSION="$(cat VERSION)"
-      docker-compose run "$DIST"
+      docker-compose run --rm "$DIST"
       TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
       sha256sum "$TARBALL" >"${TARBALL}.sha256"
       buildkite-agent artifact upload "${TARBALL}*"
@@ -13,7 +13,7 @@ steps:
       DIST: stretch
     command: |
       VERSION="$(cat VERSION)"
-      docker-compose run "$DIST"
+      docker-compose run --rm "$DIST"
       TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
       sha256sum "$TARBALL" >"${TARBALL}.sha256"
       buildkite-agent artifact upload "${TARBALL}*"

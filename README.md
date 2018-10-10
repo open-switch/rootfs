@@ -13,7 +13,7 @@ If `debootstrap` is not available, you can use a container.
 > *Warning*: root must be able to write to your current directory (I'm looking at you, NFS)
 
 ```bash
-docker-compose run jessie
+docker-compose run --rm jessie
 ```
 
 A docker image can be created from this root filesystem.
