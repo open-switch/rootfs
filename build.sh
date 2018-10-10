@@ -11,10 +11,13 @@ tmpdir=$(mktemp -d)
 
 debootstrap \
   --arch="$ARCH" \
-  --include=sudo \
+  --include=dirmngr,sudo \
   "$DIST" \
   "$tmpdir" \
   http://deb.debian.org/debian/
+
+# Fetch OPX apt key
+chroot "$tmpdir" apt-key adv --fetch-keys http://deb.openswitch.net/opx.asc
 
 # Add the admin user
 chroot "$tmpdir" adduser --quiet \
