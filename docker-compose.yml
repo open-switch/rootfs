@@ -1,14 +1,8 @@
 version: '2'
 services:
-  jessie:
-    image: "opxhub/build:jessie"
+  rootfs:
+    image: "opxhub/gbp:buster-dev"
     privileged: true
     volumes:
       - ".:/mnt"
-    command: [/mnt/build.sh, jessie, amd64]
-  stretch:
-    image: "opxhub/build"
-    privileged: true
-    volumes:
-      - ".:/mnt"
-    command: [/mnt/build.sh, stretch, amd64]
+    command: [/mnt/build.sh, "${DIST}", amd64]

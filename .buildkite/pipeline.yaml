@@ -1,46 +1,27 @@
 steps:
-  - label: ":debian: Jessie"
-    env:
-      DIST: jessie
-    command: |
-      VERSION="$(cat VERSION)"
-      docker-compose run --rm "$DIST"
-      TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
-      sha256sum "$TARBALL" >"${TARBALL}.sha256"
-      buildkite-agent artifact upload "${TARBALL}*"
   - label: ":debian: Stretch"
     env:
       DIST: stretch
     command: |
       VERSION="$(cat VERSION)"
-      docker-compose run --rm "$DIST"
+      docker-compose run --rm rootfs
       TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
       sha256sum "$TARBALL" >"${TARBALL}.sha256"
       buildkite-agent artifact upload "${TARBALL}*"
-  - wait: ~
-    continue_on_failure: true
+  - wait
   - label: ":docker: publish"
     branches: "v*"
     agents: {queue: deploy}
     concurrency: 1
     concurrency_group: "docker/import-push"
+    env:
+      DIST: stretch
     command: |
       if [[ -z "$BUILDKITE_TAG" ]]; then
         echo Not a tag, skipping...
         exit
       fi
       VERSION="$(cat VERSION)"
-      DIST=jessie
-      TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
-      buildkite-agent artifact download "${TARBALL}*" . && {
-        docker import "$TARBALL" "opxhub/rootfs:${VERSION}-${DIST}"
-        docker tag "opxhub/rootfs:${VERSION}-${DIST}" "opxhub/rootfs:$DIST"
-        docker tag "opxhub/rootfs:${VERSION}-${DIST}" "opxhub/rootfs:latest"
-        docker push "opxhub/rootfs:${VERSION}-${DIST}"
-        docker push "opxhub/rootfs:$DIST"
-        docker push "opxhub/rootfs:latest"
-      }
-      DIST=stretch
       TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
       buildkite-agent artifact download "${TARBALL}*" . && {
         docker import "$TARBALL" "opxhub/rootfs:${VERSION}-${DIST}"
@@ -53,6 +34,8 @@ steps:
     agents: {queue: deploy}
     concurrency: 1
     concurrency_group: "archive.openswitch.net"
+    env:
+      DIST: stretch
     command: |
       if [[ -z "$BUILDKITE_TAG" ]]; then
         echo Not a tag, skipping...
@@ -60,13 +43,6 @@ steps:
       fi
       UPLOAD="s3://archive.openswitch.net/rootfs"
       VERSION="$(cat VERSION)"
-      DIST=jessie
-      TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
-      buildkite-agent artifact download "${TARBALL}*" . && {
-        aws s3 cp "$TARBALL" "$UPLOAD/$TARBALL"
-        aws s3 cp "${TARBALL}.sha256" "$UPLOAD/${TARBALL}.sha256"
-      }
-      DIST=stretch
       TARBALL="opx-rootfs_${VERSION}-${DIST}_amd64.tar.gz"
       buildkite-agent artifact download "${TARBALL}*" . && {
         aws s3 cp "$TARBALL" "$UPLOAD/$TARBALL"
