@@ -66,4 +66,3 @@ fi
 # Clean up
 rm -fr "$tmpdir"
 
-# LocalWords:  tmp
